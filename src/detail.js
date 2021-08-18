@@ -1,6 +1,7 @@
 function displayDetail(product) {
     const element = document.createElement("div");
     element.innerHTML = `
+    <div class="produit">
     <img src="${product.imageUrl}" alt="description d'images">
     <h2>${product.name}</h2>
     <p>${product.description}</p>
@@ -9,6 +10,7 @@ function displayDetail(product) {
     </select>
     <span>${product.price / 100} €</span>
     <button id="${product._id}">ajouter du panier</button>
+    </div>
   `;
     document.getElementById("app").appendChild(element);
     document.getElementById(product._id).addEventListener("click", ()=>{
