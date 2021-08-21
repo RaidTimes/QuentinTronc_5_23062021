@@ -24,9 +24,12 @@ function displayDetail(product) {
 
 function displayForm(product) {
   const element = document.createElement("div");
-  const total = getProductList().reduce((total, product) => total+product.price, 0)
+  const total = getProductList().reduce((total, product) => total + product.price, 0)
   element.innerHTML = `
   <div class="panier">
+    <div>
+      <p id="table">Montant du panier: ${total / 100}€</p>
+    </div>
     <form action="confirmation.html" method="POST" id="orderForm">
     <div>
       <input name="firstname" id="firstname" value="Prénom">
@@ -35,15 +38,12 @@ function displayForm(product) {
     <div>
       <input name="address" id="address" value="Adresse">
       <input name="city" id="city" value="Ville">
-      <input name="email" id="email" value="Email">
     </div>
     <div>
+      <input name="email" id="email" value="Email">
       <button>Commander</button>
     </div>
     </form>
-    <div>
-      <p id="table">Total= ${total / 100}€</p>
-    </div>
   </div>
   `;
   document.getElementById("app").appendChild(element);
@@ -91,6 +91,7 @@ async function sendOrder(event) {
     })
   })
   localStorage.setItem("order", JSON.stringify(await order.json()))
+  location.href="confirmation.html"
 }
   
 function start() {
